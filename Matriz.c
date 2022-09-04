@@ -4,49 +4,56 @@
 
 int main()
 {
-    int tam, in, max, com;
-
+    int tam, calc, menos;
+    scanf("%i",&tam);
     do
     {
-        scanf("%i",&tam);
+        
+        menos=tam-1;
+        calc=tam-(tam/3);
         int vet[tam][tam];
-        in=1;
-        com=0;
 
         if (tam==0)
         {
             return 0;
         }
         
-
-        for (int max = tam; max > 0; max--)
+        for (int l = 0; l < tam; l++)
         {
-            for (int l = com; l < max; l++)
+            for (int c = 0; c < tam; c++)
             {
-                for (int c = com; c < max; c++)
+                vet[l][c]=0;
+
+                if (l==c)
                 {
-                    vet[l][c]=in;
+                    vet[l][c]=2;
+                }
+                if (l+c==tam-1)
+                {
+                    vet[l][c]=3;
+                }
+                if (l>=tam/3 && l<calc && c>=tam/3 && c<calc)
+                {
+                    vet[l][c]=1;
                 }    
-            }        
-            in++;
-            com++;
+                if (l==c && l+c==menos)
+                {
+                    vet[l][c]=4;
+                }        
+            }
+            
         }
         
-        
-
         for (int l = 0; l < tam; l++)
         {
             for (int c = 0; c < tam; c++)
             {   
-                if (c==0)
-                {
-                    printf("%i",vet[l][c]);
-                }else
-                {printf("   %i",vet[l][c]);}
+                printf("%i",vet[l][c]);
             }
             printf("\n");
         }
-    } while (1);
+        printf("\n");
+    } while ((scanf("%i",&tam) != EOF));
     
              
     return 0;
